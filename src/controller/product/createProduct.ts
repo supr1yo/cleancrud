@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import prisma from '../../services/prisma';
+import prisma from '../../lib/db';
 
 export default async function createProduct(req: Request, res: Response) {
     try {
