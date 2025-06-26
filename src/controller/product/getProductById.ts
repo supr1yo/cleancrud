@@ -6,16 +6,18 @@ export default async function getProductById(req: Request, res: Response) {
         const { id } = req.params;
 
         if (!id) {
-            return res.status(400).json({ reason: 'Product ID is required.' });
+            res.status(400).json({ reason: 'Product ID is required.' });
+            return;
         }
         const product = await prisma.product.findUnique({ where: { id } });
         if (!product) {
-            return res.status(404).json({ reason: 'Product not found.' });
+            res.status(404).json({ reason: 'Product not found.' });
+            return;
         }
-        return res.status(200).json(product);
+        res.status(200).json(product);
         return;
     } catch (error) {
         console.error('Error fetching product:', error);
-        return res.status(500).json({ reason: 'Something went wrong.' });
+        res.status(500).json({ reason: 'Something went wrong.' });
     }
 }

@@ -4,8 +4,8 @@ import signup  from '../controller/user/signup';
 
 const router = Router();
 
-router.post('/signup', signup as unknown as RequestHandler);
+router.post('/signup', signup);
 
-router.post('/login', login as unknown as RequestHandler);
+router.post('/login', login);
 
 export default router;

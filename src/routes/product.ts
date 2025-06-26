@@ -1,17 +1,17 @@
 import { Router } from 'express';
-import { RequestHandler } from 'express';
 import getAllProducts from '../controller/product/getAllProducts';
 import createProduct from '../controller/product/createProduct';
-import getProductById from '../controller/product/getAllProducts';
+import getProductById from '../controller/product/getProductById';
 import updateProduct from '../controller/product/updateProduct';
 import deleteProduct from '../controller/product/deleteProduct';
+import auth from '../middleware/auth';
 
 const router = Router();
 
-router.get('/products', getAllProducts as unknown as RequestHandler);
-router.post('/products', createProduct as unknown as RequestHandler);
-router.get('/products/:id', getProductById as unknown as RequestHandler);
-router.put('/products/:id', updateProduct as unknown as RequestHandler);
-router.delete('/products/:id', deleteProduct as unknown as RequestHandler);
+router.get('/products',auth, getAllProducts);
+router.post('/products', auth, createProduct);
+router.get('/products/:id', auth, getProductById);
+router.put('/products/:id', auth, updateProduct );
+router.delete('/products/:id', auth, deleteProduct);
 
 export default router;

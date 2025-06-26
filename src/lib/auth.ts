@@ -9,7 +9,6 @@ if(!JWT_SECRET) throw new Error('JWT_SECRET cannot be empty.');
 export function signJwt(payload: JwtPayload): string {
     return jwt.sign(payload, JWT_SECRET, {
         expiresIn: '5d',
-        algorithm: 'ES256',
         issuer: 'cleancrud'
     });
 }
