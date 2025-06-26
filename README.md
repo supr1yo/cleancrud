@@ -95,7 +95,7 @@ Authenticated routes require a **Bearer token** in the `Authorization` header or
 - Example schemas:
   - `signupSchema`
   - `loginSchema`
-  - `createProductSchema` (optional but recommended)
+  - `productSchema`
 
 ---
 
