@@ -4,7 +4,7 @@ import prisma from '../../lib/db';
 import { comparePassword, signJwt } from '../../lib/auth';
 import LoginSchema from '../../validation/login';
 
-export default async function login(req: Request, res: Response): Promise<void> {
+export default async function login(req: Request, res: Response): Promise<any> {
   try {
     const credentials = LoginSchema.parse(req.body);
     const { username, password } = credentials;
@@ -14,8 +14,8 @@ export default async function login(req: Request, res: Response): Promise<void> 
     const isValid = user && await comparePassword(password, user.password);
 
     if (!user || !isValid) {
-      res.status(404).json({ reason: 'User not found or invalid credentials' });
-      return;
+      return res.status(404).json({ reason: 'User not found or invalid credentials' });
+    
     }
 
     const token = await signJwt({ id: user.id, email: user.email });
@@ -26,17 +26,15 @@ export default async function login(req: Request, res: Response): Promise<void> 
       maxAge: 5 * 24 * 60 * 60 * 1000, // 5 days
     });
 
-    res.status(201).json({ reason: 'User logged in successfully' });
-    return;
+    return res.status(201).json({ reason: 'User logged in successfully' });
+   
 
   } catch (error) {
     if (error instanceof ZodError) {
-      res.status(400).json({ reason: 'Validation failed', details: error.issues });
-      return;
+      return res.status(400).json({ reason: 'Validation failed', details: error.issues });
     }
 
     console.error(error);
-    res.status(500).json({ reason: 'Something went wrong.' });
-    return;
+    return res.status(500).json({ reason: 'Something went wrong.' });
   }
 }

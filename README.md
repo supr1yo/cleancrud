@@ -1,4 +1,3 @@
-
 # CleanCRUD 
 ![PRs Accepted](https://img.shields.io/badge/PRs-accepted-brightgreen.svg)
 ![Node](https://img.shields.io/badge/node-%3E=22.x-blue.svg)
@@ -16,9 +15,9 @@ A clean, simple and scalable RESTful API built with **Express**, **Prisma**, **M
 - **Database:** [MongoDB](https://www.mongodb.com/)
 - **Validation:** [Zod](https://zod.dev/)
 - **Authentication:** JWT (via `jsonwebtoken`)
+- **API Documentation:** [Swagger UI](https://swagger.io/tools/swagger-ui/) (powered by `swagger-ui-express` and `swagger-jsdoc`)
 
 ---
-
 
 ## 🚀 Getting Started
 
@@ -55,6 +54,20 @@ npm run dev
 
 ---
 
+## 📘 API Documentation
+
+This project uses **Swagger (OpenAPI 3.0)** for API documentation.
+
+After starting the server, visit:
+
+```
+http://localhost:3000/docs
+```
+
+You can interact with and test all API endpoints directly from this UI. JWT bearer authentication is supported via the Authorize button.
+
+---
+
 ## 🔐 Authentication
 
 - **Signup:** `POST /v1/signup`
@@ -86,8 +99,6 @@ Authenticated routes require a **Bearer token** in the `Authorization` header or
 
 ---
 
-
 ## 📃 License
 
 MIT License © 2025 Supriyo Kumar Aich
-

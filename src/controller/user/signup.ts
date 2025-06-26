@@ -6,7 +6,7 @@ import { hashPassword } from '../../lib/auth';
 // Import Zod schema
 import signupSchema from '../../validation/signup';
 
-export default async function signup(req: Request, res: Response): Promise<void> {
+export default async function signup(req: Request, res: Response): Promise<any> {
   try {
     const credentials = signupSchema.parse(req.body);
     const { email, username, password } = credentials;
@@ -18,8 +18,7 @@ export default async function signup(req: Request, res: Response): Promise<void>
     });
 
     if (userExists) {
-      res.status(409).json({ message: 'User with this email already exists' });
-      return;
+      return res.status(409).json({ message: 'User with this email already exists' });
     }
 
     await prisma.user.create({
@@ -30,17 +29,14 @@ export default async function signup(req: Request, res: Response): Promise<void>
       }
     });
 
-    res.status(200).json({ reason: 'User has been created successfully' });
-    return;
+    return res.status(200).json({ reason: 'User has been created successfully' });
 
   } catch (error) {
     if (error instanceof ZodError) {
-      res.status(400).json({ reason: 'Validation failed', details: error.issues });
-      return;
+      return res.status(400).json({ reason: 'Validation failed', details: error.issues });
     }
 
     console.error(error);
-    res.status(500).json({ reason: 'Something went wrong.' });
-    return;
+    return res.status(500).json({ reason: 'Something went wrong.' });
   }
 }

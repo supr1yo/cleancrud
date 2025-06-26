@@ -1,7 +1,8 @@
 {
   "name": "cleancrud",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/app.cjs",
+  "description": "A clean RESTful API boilerplate using Express, Prisma, MongoDB, Zod, and Swagger",
   "type": "commonjs",
   "scripts": {
     "dev": "ts-node src/app.ts",
@@ -12,14 +13,17 @@
     "type": "git",
     "url": "git+https://github.com/supr1yo/cleancrud.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["express", "nodejs", "mongodb", "prisma", "swaggerui", "zod"],
+  "author": {
+  "name": "Supriyo Kumar Aich",
+  "email": "supriyokumaraich@gmail.com",
+  "url": "https://github.com/supr1yo"
+},
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/supr1yo/cleancrud/issues"
   },
   "homepage": "https://github.com/supr1yo/cleancrud#readme",
-  "description": "",
   "dependencies": {
     "@prisma/client": "^6.10.1",
     "bcrypt": "^6.0.0",
@@ -27,6 +31,8 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "prisma": "^6.10.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "ts-node": "^10.9.2",
     "zod": "^3.25.67"
   },
@@ -34,6 +40,8 @@
     "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
     "typescript": "^5.8.3"
   }
 }

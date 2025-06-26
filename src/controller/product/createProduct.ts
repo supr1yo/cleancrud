@@ -3,7 +3,7 @@ import prisma from '../../lib/db';
 import { ZodError } from 'zod';
 import productSchema from '../../validation/product';
 
-export default async function createProduct(req: Request, res: Response) {
+export default async function createProduct(req: Request, res: Response): Promise<any> {
     try {
         const validated = productSchema.parse(req.body);
         const { name, description, price, userId } = validated;
@@ -19,14 +19,12 @@ export default async function createProduct(req: Request, res: Response) {
                 }
             }
         });
-        res.status(201).json(product);
-        return;
+        return res.status(201).json(product);
     } catch (error) {
         if (error instanceof ZodError) {
-            res.status(400).json({ reason: 'Validation failed', details: error.issues });
-            return;
+            return res.status(400).json({ reason: 'Validation failed', details: error.issues });
         }
         console.error("Error creating product:", error);
-        res.status(500).json({ error: "Failed to create product" });
+        return res.status(500).json({ error: "Failed to create product" });
     }
 }
